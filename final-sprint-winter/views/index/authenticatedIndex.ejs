@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll Dashboard</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+
+    <!-- Log Out Button -->
+    <form action="/logout" method="GET">
+        <button type="submit">Log Out</button>
+    </form>
+
+    <!-- Create New Poll Button -->
+    <a href="/createPoll">
+        <button>Create New Poll</button>
+    </a>
+
+    <h2>Active Polls</h2>
+
+    <% if (polls.length > 0) { %>
+        <ul>
+            <% polls.forEach(poll => { %>
+                <li>
+                    <h3><%= poll.question %></h3>
+                    <form action="/vote" method="POST">
+                        <input type="hidden" name="pollId" value="<%= poll.id %>">
+                        <% poll.options.forEach(option => { %>
+                            <button type="submit" name="selectedOption" value="<%= option.answer %>">
+                                Vote for <%= option.answer %> - <%= option.votes %> votes
+                            </button>
+                        <% }) %>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No active polls. <a href="/createPoll">Create a new poll.</a></p>
+    <% } %>
+
+</body>
+</html>
+
+
+

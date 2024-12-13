@@ -1,0 +1,22 @@
+<body>
+    <div class="main-content">
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+            <div class="form-input-container">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-input-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <% if (errorMessage) { %>
+                <p class="error"><%= errorMessage %></p>
+            <% } %>
+            <button type="submit" class="action-button full-width">Login</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
